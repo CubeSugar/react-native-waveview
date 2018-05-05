@@ -1,0 +1,25 @@
+{
+  "name": "react-native-waveview",
+  "version": "1.0.0",
+  "description": "WaveView for React-Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CubeSugar/react-native-waveview.git"
+  },
+  "keywords": [
+    "react-native",
+    "wave",
+    "waveview",
+    "svg"
+  ],
+  "author": "Wei Jian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CubeSugar/react-native-waveview/issues"
+  },
+  "homepage": "https://github.com/CubeSugar/react-native-waveview#readme"
+}
