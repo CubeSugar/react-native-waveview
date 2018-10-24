@@ -32,7 +32,7 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 /**
  * @class Wave
- * 
+ *
  * @prop {Number} H water level
  * @prop {Array} waveParams list of params: {A, T, fill}
  * @prop {bool} animated
@@ -74,13 +74,13 @@ class Wave extends React.PureComponent {
         let waves = [];
 
         for (let i = 0; i < waveParams.length; i++) {
-            let {A, T, fill} = waveParams[i]; 
+            let {A, T, fill} = waveParams[i];
             let translateX = this._animValues[i].interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, -2 * T],
             });
             let wave = (
-                <AnimatedSvg 
+                <AnimatedSvg
                     key={i}
                     style={{
                         width: 3 * T,
@@ -93,13 +93,13 @@ class Wave extends React.PureComponent {
                     preserveAspectRatio="xMinYMin meet"
                     viewBox={`0 0 ${3 * T} ${A + H}`}
                 >
-                    <Path 
+                    <Path
                         d={`M 0 0 Q ${T / 4} ${-A} ${T / 2} 0 T ${T} 0 T ${3 * T / 2} 0 T ${2 * T} 0 T ${5 * T / 2} 0 T ${3 * T} 0 V ${H} H 0 Z`}
                         fill={fill}
                         transform={`translate(0, ${A})`}
                     />
                 </AnimatedSvg>
-            ); 
+            );
             waves.push(wave);
         }
 
@@ -145,11 +145,17 @@ class Wave extends React.PureComponent {
     startAnim() {
         this.stopAnim();
 
+        const {
+          speed = 5000,
+          speedIncreasePerWave = 1000,
+          easing = 'linear'
+        } = this.props
+
         for (let i = 0; i < this._animValues.length; i++) {
             let anim = Animated.loop(Animated.timing(this._animValues[i], {
                 toValue: 1,
-                duration: 5000 + i * 1000, //TODO: P
-                easing: Easing.linear,
+                duration: speed + i * speedIncreasePerWave,
+                easing: Easing[easing],
                 useNativeDriver: true,
             }));
             this._animations.push(anim);
