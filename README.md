@@ -14,13 +14,13 @@
 ## DEPENDENCIES
 
 - [React-Native-Svg](https://github.com/react-native-community/react-native-svg)
-  
+
 ## INSTALL
 
 1. Install react-native-svg, use
 
     `npm install --save react-native-svg`  or
-    
+
     `yarn add react-native-svg`
 
 2. Link react-native-svg, check [here](https://github.com/react-native-community/react-native-svg) for help.
@@ -36,6 +36,9 @@ name        |   type   | desc
 H           |  number  | BaseLine height
 animated    |  bool    | animation when mounted
 waveParams  |  Array   | [{ A, T, fill}, ...]
+easing      |  string  | name of easing from ReactNative#Easing
+speed       |  number  | base duration in ms of one wave cycle
+speedIncreasePerWave | number | increase in speed in ms per each wave
 
 ```
 /**
@@ -83,9 +86,9 @@ waveParams  |  Array   | [{ A, T, fill}, ...]
             {A: 20, T: 100, fill: '#B36100'},
         ]);
     }}>
-    <Wave 
+    <Wave
         ref={ref=>this._waveRect = ref}
-        style={_styles.wave} 
+        style={_styles.wave}
         H={30}
         waveParams={[
             {A: 10, T: 180, fill: '#62c2ff'},
@@ -100,8 +103,8 @@ waveParams  |  Array   | [{ A, T, fill}, ...]
 
 ```
 <View style={_styles.container} >
-    <Wave 
-        style={_styles.waveBall} 
+    <Wave
+        style={_styles.waveBall}
         H={70}
         waveParams={[
             {A: 10, T: 180, fill: '#62c2ff'},
