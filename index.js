@@ -36,16 +36,18 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
  * @prop {Number} H water level
  * @prop {Array} waveParams list of params: {A, T, fill}
  * @prop {bool} animated
+ * @prop {string} direction
  */
 class Wave extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        let {H, waveParams, animated} = this.props;
+        let {H, waveParams, animated, direction = "left"} = this.props;
 
         this.state = {
             H,
             waveParams,
+            direction: direction === "left" ? -1 : 1,
         };
 
         this._animValues = [];
@@ -69,7 +71,7 @@ class Wave extends React.PureComponent {
 
     render() {
         let {style} = this.props;
-        let {H, waveParams} = this.state;
+        let {H, waveParams, direction} = this.state;
 
         let waves = [];
 
@@ -77,19 +79,18 @@ class Wave extends React.PureComponent {
             let {A, T, fill} = waveParams[i];
             let translateX = this._animValues[i].interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, -2 * T],
+                outputRange: [0, 2 * T * direction],
             });
             let wave = (
                 <AnimatedSvg
                     key={i}
-                    style={{
+                    style={[{
                         width: 3 * T,
                         height: A + H,
                         position: 'absolute',
-                        left: 0,
                         bottom: 0,
                         transform: [{ translateX }],
-                    }}
+                    }, (direction === -1 ? { left: 0 }: { right: 0})]}
                     preserveAspectRatio="xMinYMin meet"
                     viewBox={`0 0 ${3 * T} ${A + H}`}
                 >
