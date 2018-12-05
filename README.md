@@ -35,6 +35,7 @@ name        |   type   | desc
 :-----------|:--------:|:----------------
 H           |  number  | BaseLine height
 animated    |  bool    | animation when mounted
+direction   |  string  | direction in which the waves animate: "left" (default) or "right"
 waveParams  |  Array   | [{ A, T, fill}, ...]
 easing      |  string  | name of easing from ReactNative#Easing
 speed       |  number  | base duration in ms of one wave cycle
