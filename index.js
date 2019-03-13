@@ -106,6 +106,7 @@ class Wave extends React.PureComponent {
         return (
             <View style={style} >
                 {waves}
+                {this.props.children}
             </View>
         );
     }
