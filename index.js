@@ -60,7 +60,11 @@ class Wave extends React.PureComponent {
     componentDidMount() {
         this._animated && this.startAnim();
     }
-
+    componentDidUpdate(prevProps){
+        if (prevProps.speed!==this.props.speed){
+            this.startAnim();
+        }
+    }
     componentWillUnmount() {
         this.stopAnim();
         this._animValues = null;
@@ -152,6 +156,7 @@ class Wave extends React.PureComponent {
         } = this.props
 
         for (let i = 0; i < this._animValues.length; i++) {
+            this._animValues[i].setValue(0)
             let anim = Animated.loop(Animated.timing(this._animValues[i], {
                 toValue: 1,
                 duration: speed + i * speedIncreasePerWave,
